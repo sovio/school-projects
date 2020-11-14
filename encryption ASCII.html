@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function test(){
+            var x = document.querySelector("#text");
+            var odp = document.querySelector("#odp");
+            odp.innerHTML="";
+            for(let z = 0 ;z < x.value.length;z++){
+                if((z+1)%2==0){
+                p = x.value.charCodeAt(z)+3;
+                var rp = String.fromCharCode(p);
+                    if(p>90){
+                        p = p-91;
+                        var rp = String.fromCharCode(65+p);
+                        odp.innerHTML+=rp;
+                    }else
+                        odp.innerHTML+=rp; 
+                }else{
+                    p = x.value.charCodeAt(z)-3;
+                    var rp = String.fromCharCode(p);
+                    if(p<65){
+                        p = 64 - p;
+                        var rp = String.fromCharCode(90-p);
+                        odp.innerHTML+=rp;   
+                    }else
+                        odp.innerHTML+=rp;      
+                }
+            }             
+        }
+    </script>
+    <input type="text" id="text" value="INFORMATYKA" oninput="this.value = this.value.toUpperCase()">
+    <button onclick="test()">submit</button>
+    <div id="odp"></div>
+</body>
+</html>

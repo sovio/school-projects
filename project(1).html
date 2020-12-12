@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	<meta charset="utf-8" />
+	<style>
+		body{
+            background-color: black;
+			font-family:Arial, sans-serif;
+			font-size:14px;
+		}
+		th{
+			background-color:gray;
+		}
+		td{
+			background-color:silver;
+		}
+		.ilosci{
+			width:60px;
+			height:20px;
+			background-color:yellow;
+			border:none;
+		}
+        .cena, .wartosc, .discount, .payment{
+            width:60px;
+			height:20px;
+			background-color:silver;
+			border:none;
+        }
+		#suma{
+			background-color:Gray;
+			width:60px;
+		}
+    </style>
+</head>	
+<body>
+    <script>
+        this.onload = () => { // metoda onload 
+    document.querySelector("#b1").addEventListener("click" ,oblicz_sume)
+}
+    const oblicz_sume = () => {//funkcja główna
+
+        const perProc = (num, proc) => { // funkcja liczaca procet z liczby
+            return (num/100)*proc; 
+        }
+
+        const z = document.querySelectorAll(".cena")
+        const x = document.querySelectorAll(".ilosci")
+        const y = document.querySelectorAll(".wartosc")
+        const a = document.querySelectorAll(".discount")
+        const b = document.querySelectorAll(".payment")
+        const suma = document.querySelector("#suma")
+        let c = 0; // "zmienna globalna" do wyznaczenia "sumy"
+        for(let i = 0; i < z.length;i++){//petla sprawdzajaca ilsoc sekcji w tabeli
+           let sum = z[i].value*x[i].value//liczenie wartosci : cena * ilosc
+           y[i].value=sum   //wypisywanie value w wartosciach
+           sum = sum - perProc(sum,a[i].value)//liczenie % z "Wartości"
+           b[i].value=sum //wypisanie "payment"
+            c+=sum //sumowanie "payment"
+            
+        }
+        suma.value=c //wypisywanie sumy 
+}
+    </script>
+	<form>
+		<table>
+			<tr>
+                <th>Nazwa</th> 
+                <th>Cena</th> 
+                <th>Ilość</th>
+                <th>Wartość</th>
+                <th>Promocja w %</th>
+                <th>Do zapłaty</th>
+			</tr>
+			<tr>
+                <td>Monitor</td> 
+                <td><input class="cena" value="100" disabled="disabled"></td> 
+                <td><input class="ilosci" type="text" value="0"/></td>
+                <td><input class="wartosc" disabled="disabled" value="0"/></td>
+                <td><input class="discount" disabled="disabled" value="10" /></td>
+                <td><input class="payment" disabled="disabled" value="0"/></td>
+
+			</tr>
+			<tr>
+                <td>Pamięć RAM</td> 
+                <td><input class="cena" value="120" disabled="disabled"></td> 
+                <td><input class="ilosci" type="text" value="0"/></td>
+                <td><input class="wartosc" disabled="disabled" value="0"/></td>
+                <td><input class="discount" disabled="disabled" value="15" /></td>
+                <td><input class="payment" disabled="disabled"  value="0"/></td>
+			</tr>
+			<tr>
+                <td>Procesor</td> 
+                <td><input class="cena" value="875" disabled="disabled"></td> 
+                <td><input class="ilosci" type="text" value="0"/></td>
+                <td><input class="wartosc" disabled="disabled" value="0"/></td>
+                <td><input class="discount" disabled="disabled" value="2" /></td>
+                <td><input class="payment" disabled="disabled"  value="0"/></td>
+			</tr>
+			<tr>
+                <td>Płyta główna</td> 
+                <td><input class="cena" value="358" disabled="disabled"></td> 
+                <td><input class="ilosci" type="text" value="0"/></td>
+                <td><input class="wartosc" disabled="disabled" value="0"/></td>
+                <td><input class="discount" disabled="disabled" value="12" /></td>
+                <td><input class="payment" disabled="disabled"  value="0"/></td>  
+            </tr> 
+            <tr>
+                <td colspan="6" style="text-align: right;">Suma: <input id="suma" style="text-align: right;" disabled="disabled" value="0"></td>
+            </tr>
+        </table>  
+    </form>
+    <button id="b1">Wylicz</button> 
+    <!-- Dawid Sroka © 2020-->
+</body>
+</html>
